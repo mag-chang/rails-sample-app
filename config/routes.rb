@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :reviewers
+  resources :reviews
+  resources :races
   devise_for :users
   root 'info#index'
   get 'info/mypage'
