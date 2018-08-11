@@ -10,7 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_11_204441) do
+ActiveRecord::Schema.define(version: 2018_08_11_205812) do
+
+  create_table "races", force: :cascade do |t|
+    t.string "name"
+    t.date "started_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviewers", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reviewers_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "reviewer_id"
+    t.integer "race_id"
+    t.integer "score"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["race_id"], name: "index_reviews_on_race_id"
+    t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

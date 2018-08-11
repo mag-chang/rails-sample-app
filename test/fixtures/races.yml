@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  started_on: 2018-08-12
+  area: 
+  review: 
+
+two:
+  name: MyString
+  started_on: 2018-08-12
+  area: 
+  review: 
