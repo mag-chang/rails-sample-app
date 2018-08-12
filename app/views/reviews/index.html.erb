@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h4 class="mt-4 border-bottom">
+レビュー一覧
+</h4>
+
+<table class="table table-sm table-striped table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">大会名</th>
+      <th scope="col">平均スコア</th>
+      <th scope="col">レビュー数</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= review.race.name %></td>
+        <td><%= review.score %></td>
+        <td><%= review.score %></td>
+        <td><%= link_to 'レビュー内容詳細', review, class:'btn btn-outline-info btn-sm' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if user_signed_in? && current_user.is_reviewer %>
+<%= link_to 'レビュー投稿', new_review_path(user_id: current_user.id), class:'btn btn-outline-dark btn-sm' %>
+<% end %>

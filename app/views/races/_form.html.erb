@@ -1,0 +1,27 @@
+<%= form_with(model: race, local: true) do |form| %>
+  <% if race.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(race.errors.count, "error") %> 登録できませんでした:</h2>
+
+      <ul>
+      <% race.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name, '大会名' %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :started_on, '開催日' %>
+    <%= form.date_select :started_on %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit '登録', class:'btn btn-primary btn-sm' %>
+  </div>
+<% end %>

@@ -1,0 +1,17 @@
+<h4 class="mt-4 border-bottom">
+レビュアー登録
+</h4>
+
+<ul class="list-unstyled">
+    <li>レビュアーとして登録することが出来ます。</li>
+    <li>レビュアーになると、以下の機能が使えます。</li>
+    <ul>
+        <li>大会情報の登録、修正、削除</li>
+        <li>各大会のレビューの投稿、修正、削除</li>
+        <li>各大会のレビュー内容の詳細の閲覧</li>
+    </ul>
+</ul>
+ 
+<%= render 'form', reviewer: @reviewer %>
+
+<%= link_to '戻る', reviewers_path, class:'btn btn-outline-dark btn-sm' %>

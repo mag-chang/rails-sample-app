@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h4 class="mt-4 border-bottom">
+大会一覧
+</h4>
+
+<table class="table table-sm table-striped table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">大会名</th>
+      <th scope="col">開催日</th>
+      <th scope="col">レビュー数</th>
+      <th scope="col">レビュアー数</th>
+      <th scope="col" colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @races.each do |race| %>
+      <tr>
+        <td><%= race['race_model'].name %></td>
+        <td><%= race['race_model'].started_on %></td>
+        <td><%= race['review_count'] %></td>
+        <td><%= race['reviewer_count'] %></td>
+        <td><%= link_to '詳細', {:controller => 'races', :action => 'show', :id => race['race_model'].id, :user_id => current_user.id}, class: 'btn btn-outline-info btn-sm' %></td>
+        <% if current_user.is_reviewer %>
+        <td><%= link_to '編集', edit_race_path(race['race_model']), class:'btn btn-outline-primary btn-sm' %></td>
+        <td><%= link_to '削除', race['race_model'], method: :delete, data: { confirm: '削除してよろしいですか?' }, class:'btn btn-outline-danger btn-sm' %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if current_user.is_reviewer %>
+<%= link_to '大会情報登録', new_race_path, class:'btn btn-outline-dark btn-sm' %>
+<% end %>
