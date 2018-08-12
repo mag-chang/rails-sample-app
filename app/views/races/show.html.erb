@@ -1,24 +1,38 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>大会名:</strong>
   <%= @race.name %>
 </p>
 
 <p>
-  <strong>Started on:</strong>
+  <strong>開催日:</strong>
   <%= @race.started_on %>
 </p>
 
-<p>
-  <strong>Area:</strong>
-  <%= @race.area %>
-</p>
+<h4 class="mt-4 border-bottom">
+レビュー一覧
+</h4>
+<% if current_user.is_reviewer && @reviewer_count >= 1 %>
+  <table class="table table-sm table-striped table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">レビュアー名</th>
+        <th scope="col">内容</th>
+      </tr>
+    </thead>
 
-<p>
-  <strong>Review:</strong>
-  <%= @race.review %>
-</p>
+    <tbody>
+      <% @reviews.each do |review| %>
+        <tr>
+          <td><%= review.reviewer.name %></td>
+          <td><%= review.content %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p><u>これより下のコンテンツはレビュアー登録後、レビュー記載した方のみご覧いただけます。</u></p>
+<% end %>
 
-<%= link_to 'Edit', edit_race_path(@race) %> |
-<%= link_to 'Back', races_path %>
+<%= link_to '戻る', races_path, class:'btn btn-outline-dark btn-sm' %>

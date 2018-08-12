@@ -1,19 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>レビュアー名:</strong>
   <%= @reviewer.name %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @reviewer.user %>
+  <strong>レビュー数:</strong>
+  <%= @review_count %>
 </p>
 
 <p>
-  <strong>Review:</strong>
-  <%= @reviewer.review %>
+  <strong>レビュー大会数:</strong>
+  <%= @race_count %>
 </p>
 
-<%= link_to 'Edit', edit_reviewer_path(@reviewer) %> |
-<%= link_to 'Back', reviewers_path %>
+<p>
+<%= link_to '編集', edit_reviewer_path(@reviewer, user_id: current_user.id), class:'btn btn-primary btn-sm' %>
+</p>
+<p>
+<%= link_to '戻る', reviewers_path, class:'btn btn-outline-dark btn-sm' %>
+</p>
