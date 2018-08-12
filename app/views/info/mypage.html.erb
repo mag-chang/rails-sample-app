@@ -1,7 +1,11 @@
 <h4 class="mt-4 border-bottom">
-レビュアー用ページ
+マイページ
 </h4>
+<% if @reviewer %>
 <h5>こんにちは、<%= @reviewer.name %>さん<br></h5>
+<% else %>
+<h5>こんにちは、<%= current_user.email %>さん<br></h5>
+<% end %>
 
 <p></p>
 <h6 class="mt-6 border-bottom">
