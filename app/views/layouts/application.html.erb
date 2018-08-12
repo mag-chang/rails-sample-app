@@ -11,20 +11,39 @@
 
   <body>
     <header>
-      <nav>
-        <% if user_signed_in? %>
-        <strong><%= link_to current_user.email, info_mypage_path %></strong>
-        <%= link_to 'プロフィール変更', edit_user_registration_path %>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-        <% else %>
-        <%= link_to 'サインアップ', new_user_registration_path %>
-        <%= link_to 'ログイン', new_user_session_path %>
-        <% end %>
+      <nav class="nav">
+        <div class="container">
+            <%= link_to 'Sample-App', root_path, class:'btn btn-primary' %>
+            <% if user_signed_in? %>
+            <ul class="nav justify-content-end">
+              <li class="nav-item">
+                <%= link_to 'マイページ', info_mypage_path, class:'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'アカウント情報変更', edit_user_registration_path, class:'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:'nav-link' %>
+              </li>
+            </ul>
+            <% else %>
+            <ul class="nav justify-content-end">
+              <li class="nav-item">
+                <%= link_to 'サインアップ', new_user_registration_path, class:'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ログイン', new_user_session_path, class:'nav-link' %>
+              </li>
+            </ul>
+            <% end %>
+        </div>
       </nav>
-  </header>
+    </header>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>

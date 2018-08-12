@@ -10,6 +10,9 @@ class ReviewersController < ApplicationController
   # GET /reviewers/1
   # GET /reviewers/1.json
   def show
+    id = params[:id]
+    @reviewer = Reviewer.find(id)
+    @review_count = Review.where(reviewer: id).count()
   end
 
   # GET /reviewers/new
@@ -24,7 +27,11 @@ class ReviewersController < ApplicationController
   # POST /reviewers
   # POST /reviewers.json
   def create
+    user_id = params[:user_id]
+
     @reviewer = Reviewer.new(reviewer_params)
+    # ログイン中のユーザーを紐付ける
+    @reviewer.user = User.find(user_id)
 
     respond_to do |format|
       if @reviewer.save

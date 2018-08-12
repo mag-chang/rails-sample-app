@@ -1,7 +1,7 @@
 <%= form_with(model: review, local: true) do |form| %>
   <% if review.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <h2><%= pluralize(review.errors.count, "error") %> 登録できませんでした。:</h2>
 
       <ul>
       <% review.errors.full_messages.each do |message| %>
@@ -12,26 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user %>
-    <%= form.text_field :user %>
+    <%= form.label :reviewer, 'レビュアー名' %>
+    <%= form.text_field :reviewer %>
   </div>
 
   <div class="field">
-    <%= form.label :race %>
+    <%= form.label :race, 'レビュー対象大会' %>
     <%= form.text_field :race %>
   </div>
 
   <div class="field">
-    <%= form.label :score %>
+    <%= form.label :score, '点数' %>
     <%= form.number_field :score %>
   </div>
 
   <div class="field">
-    <%= form.label :content %>
+    <%= form.label :content, 'レビュー詳細' %>
     <%= form.text_area :content %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit '登録', class:'btn btn-primary btn-sm' %>
   </div>
 <% end %>

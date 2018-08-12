@@ -1,24 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>大会名:</strong>
   <%= @race.name %>
 </p>
 
 <p>
-  <strong>Started on:</strong>
+  <strong>開催日:</strong>
   <%= @race.started_on %>
 </p>
 
-<p>
-  <strong>Area:</strong>
-  <%= @race.area %>
-</p>
-
-<p>
-  <strong>Review:</strong>
-  <%= @race.review %>
-</p>
-
-<%= link_to 'Edit', edit_race_path(@race) %> |
-<%= link_to 'Back', races_path %>
+<%= link_to '修正', edit_race_path(@race), class:'btn btn-primary btn-sm' %>
+<%= link_to '戻る', races_path, class:'btn btn-outline-dark btn-sm' %>
