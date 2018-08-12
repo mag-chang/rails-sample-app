@@ -8,6 +8,8 @@
   <thead>
     <tr>
       <th scope="col">レビュアー名</th>
+      <th scope="col">レビュー数</th>
+      <th scope="col">レビュー大会数</th>
       <th scope="col" colspan="3"></th>
     </tr>
   </thead>
@@ -15,10 +17,14 @@
   <tbody>
     <% @reviewers.each do |reviewer| %>
       <tr>
-        <td><%= reviewer.name %></td>
-        <td><%= link_to '詳細', reviewer, class:'btn btn-outline-info btn-sm' %></td>
-        <td><%= link_to '編集', edit_reviewer_path(reviewer), class:'btn btn-outline-primary btn-sm' %></td>
-        <td><%= link_to '削除', reviewer, method: :delete, data: { confirm: '削除してよろしいですか?' }, class:'btn btn-outline-danger btn-sm' %></td>
+        <td><%= reviewer['reviewer_model'].name %></td>
+        <td><%= reviewer['review_count'] %></td>
+        <td><%= reviewer['race_count'] %></td>
+        <td><%= link_to '詳細', reviewer['reviewer_model'], class:'btn btn-outline-info btn-sm' %></td>
+        <% if reviewer['reviewer_model'].user.id == current_user.id %>
+        <td><%= link_to '編集', edit_reviewer_path(reviewer['reviewer_model']), class:'btn btn-outline-primary btn-sm' %></td>
+        <td><%= link_to '削除', reviewer['reviewer_model'], method: :delete, data: { confirm: '削除してよろしいですか?' }, class:'btn btn-outline-danger btn-sm' %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -26,6 +32,6 @@
 
 <br>
 
-<% if user_signed_in? %>
+<% if user_signed_in? && !current_user.is_reviewer %>
 <%= link_to 'レビュアー登録', new_reviewer_path, class:'btn btn-outline-dark btn-sm' %>
 <% end %>

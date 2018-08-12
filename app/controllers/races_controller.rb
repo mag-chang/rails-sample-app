@@ -4,7 +4,17 @@ class RacesController < ApplicationController
   # GET /races
   # GET /races.json
   def index
-    @races = Race.all
+    @races = Array.new()
+    races = Race.all
+    races.each do |race|
+      race_hash = Hash.new()
+      race_hash['race_model'] = race
+      review_count = race.reviews.count()
+      reviewer_count = race.reviewers.count()
+      race_hash['review_count'] = review_count
+      race_hash['reviewer_count'] = reviewer_count
+      @races.push(race_hash)
+    end
   end
 
   # GET /races/1
