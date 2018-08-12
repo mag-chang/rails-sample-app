@@ -3,4 +3,6 @@
 </h4>
 <%= link_to '大会一覧', races_path, class:'btn btn-primary btn-lg btn-block' %>
 <%= link_to 'レビュアー一覧', reviewers_path, class:'btn btn-primary btn-lg btn-block' %>
-<%= link_to 'レビュー一覧', reviews_path, class:'btn btn-primary btn-lg btn-block' %>
+<% if user_signed_in? && current_user.is_reviewer %>
+<%= link_to 'レビュー投稿', new_review_path(user_id: current_user.id), class:'btn btn-primary btn-lg btn-block' %>
+<% end %>

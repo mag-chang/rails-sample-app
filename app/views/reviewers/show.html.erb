@@ -16,7 +16,7 @@
 </p>
 
 <p>
-<%= link_to '編集', edit_reviewer_path(@reviewer), class:'btn btn-primary btn-sm' %>
+<%= link_to '編集', edit_reviewer_path(@reviewer, user_id: current_user.id), class:'btn btn-primary btn-sm' %>
 </p>
 <p>
 <%= link_to '戻る', reviewers_path, class:'btn btn-outline-dark btn-sm' %>

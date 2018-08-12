@@ -1,4 +1,4 @@
 class Review < ApplicationRecord
     belongs_to :reviewer
-    belongs_to :race    
+    belongs_to :race
 end

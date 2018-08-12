@@ -2,22 +2,27 @@
 
 <p>
   <strong>レビュアー名:</strong>
+  <%= @review.reviewer.name %>
 </p>
 
 <p>
-  <strong>Race:</strong>
-  <%= @review.race %>
+  <strong>大会名:</strong>
+  <%= @review.race.name %>
 </p>
 
 <p>
-  <strong>Score:</strong>
+  <strong>点数:</strong>
   <%= @review.score %>
 </p>
 
 <p>
-  <strong>Content:</strong>
+  <strong>レビュー詳細:</strong>
   <%= @review.content %>
 </p>
 
-<%= link_to 'Edit', edit_review_path(@review) %> |
-<%= link_to 'Back', reviews_path %>
+<p>
+<%= link_to '編集', edit_review_path(@review, user_id: current_user.id), class:'btn btn-primary btn-sm' %>
+</p>
+<p>
+<%= link_to '戻る', root_path, class:'btn btn-outline-dark btn-sm' %>
+</p>

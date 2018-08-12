@@ -15,20 +15,30 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   def new
     @review = Review.new
+    @reviewer = Reviewer.where(user: params['user_id']).first()
   end
 
   # GET /reviews/1/edit
   def edit
+    @reviewer = Reviewer.where(user: params['user_id']).first()
   end
 
   # POST /reviews
   # POST /reviews.json
   def create
     @review = Review.new(review_params)
+    binding.pry
+    @review.reviewer_id = params['reviewer_id']
+    @review.race_id = params['review']['race_id']
+    score = params['review']['star']
+    if score.empty?
+      score = 0
+    end
+    @review.score = score
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
+        format.html { redirect_to @review, notice: 'レビュー情報を登録しました。' }
         format.json { render :show, status: :created, location: @review }
       else
         format.html { render :new }
@@ -42,7 +52,7 @@ class ReviewsController < ApplicationController
   def update
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
+        format.html { redirect_to @review, notice: 'レビュー情報を更新しました。' }
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit }
@@ -56,7 +66,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
+      format.html { redirect_to reviews_url, notice: 'レビュー情報を削除しました。' }
       format.json { head :no_content }
     end
   end

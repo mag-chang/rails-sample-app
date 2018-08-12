@@ -5,5 +5,7 @@ class InfoController < ApplicationController
   end
 
   def mypage
+    @reviewer = Reviewer.where(user: params['user_id']).first
+    @reviews = Review.where(reviewer: @reviewer)
   end
 end

@@ -2,6 +2,6 @@
 レビュー投稿
 </h4>
 
-<%= render 'form', review: @review %>
+<%= render 'form', review: @review, reviewer: @reviewer %>
 
-<%= link_to '戻る', reviews_path, class:'btn btn-outline-dark btn-sm' %>
+<%= link_to '戻る', root_path, class:'btn btn-outline-dark btn-sm' %>

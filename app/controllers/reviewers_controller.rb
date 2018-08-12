@@ -25,7 +25,6 @@ class ReviewersController < ApplicationController
     @reviewer = Reviewer.find(id)
     @review_count = Review.where(reviewer: id).count()
     @race_count = Race.where(reviewers: id).count()
-    binding.pry
   end
 
   # GET /reviewers/new
@@ -51,7 +50,7 @@ class ReviewersController < ApplicationController
       if @reviewer.save
         user.is_reviewer = true
         user.save
-        format.html { redirect_to @reviewer, notice: 'Reviewer was successfully created.' }
+        format.html { redirect_to @reviewer, notice: 'レビュアー情報を登録しました。' }
         format.json { render :show, status: :created, location: @reviewer }
       else
         format.html { render :new }
@@ -65,7 +64,7 @@ class ReviewersController < ApplicationController
   def update
     respond_to do |format|
       if @reviewer.update(reviewer_params)
-        format.html { redirect_to @reviewer, notice: 'Reviewer was successfully updated.' }
+        format.html { redirect_to @reviewer, notice: 'レビュアー情報を更新しました。' }
         format.json { render :show, status: :ok, location: @reviewer }
       else
         format.html { render :edit }
@@ -82,7 +81,7 @@ class ReviewersController < ApplicationController
     user.is_reviewer = false
     user.save
     respond_to do |format|
-      format.html { redirect_to reviewers_url, notice: 'Reviewer was successfully destroyed.' }
+      format.html { redirect_to reviewers_url, notice: 'レビュアー情報を削除しました。' }
       format.json { head :no_content }
     end
   end

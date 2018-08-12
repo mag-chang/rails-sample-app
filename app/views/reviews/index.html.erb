@@ -17,10 +17,9 @@
   <tbody>
     <% @reviews.each do |review| %>
       <tr>
-        <td></td>
-        <td><%= review.race %></td>
-        <td></td>
-        <td></td>
+        <td><%= review.race.name %></td>
+        <td><%= review.score %></td>
+        <td><%= review.score %></td>
         <td><%= link_to 'レビュー内容詳細', review, class:'btn btn-outline-info btn-sm' %></td>
       </tr>
     <% end %>
@@ -29,6 +28,6 @@
 
 <br>
 
-<% if user_signed_in? %>
-<%= link_to 'レビュー投稿', new_review_path, class:'btn btn-outline-dark btn-sm'  %>
+<% if user_signed_in? && current_user.is_reviewer %>
+<%= link_to 'レビュー投稿', new_review_path(user_id: current_user.id), class:'btn btn-outline-dark btn-sm' %>
 <% end %>
